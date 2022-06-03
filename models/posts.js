@@ -25,4 +25,5 @@ const postSchema = new mongoose.Schema({
 });
 // 當寫入mongodb時，會強制轉小寫，字尾強制加上 s
 const Post = mongoose.model('Post', postSchema);
+
 module.exports = Post;
