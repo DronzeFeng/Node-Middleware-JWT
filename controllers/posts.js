@@ -6,27 +6,31 @@ const posts = {
   async getPosts(req, res, next) {
     // ASC  遞增(由小到大，由舊到新) createdAt ;
     // DESC 遞減(由大到小、由新到舊) -createdAt
+    const { user } = req;
     const timeSort = req.query.timeSort == 'asc' ? 'createdAt' : '-createdAt';
     const q =
       req.query.q !== undefined ? { content: new RegExp(req.query.q) } : {};
+    const userId = await userModel.findById(user.id).exec();
+    console.log(userId._id);
+
     const post = await postModel
-      .find(q)
+      .find(q, { user: userId._id })
       .populate({
         path: 'user', // Path of collection:users
-        select: 'name photo ',
+        select: 'name photo',
       })
       .sort(timeSort);
 
-    successHandle(res, post);
+    successHandle(200, res, post);
   },
   async createPost(req, res, next) {
-    const { body } = req;
+    const { body, user } = req;
     let userId = '';
 
-    if (body.user === '') {
+    if (user.id === '') {
       return errorHandle(400, '查無此使用者ID', next);
     } else {
-      userId = await userModel.findById(body.user).exec();
+      userId = await userModel.findById(user.id).exec();
     }
 
     if (userId) {
@@ -35,11 +39,11 @@ const posts = {
           content: body.content,
           image: body.image,
           createdAt: body.createdAt,
-          user: body.user,
+          user: user.id,
           likes: body.likes,
         });
 
-        successHandle(res, newPost);
+        successHandle(200, res, newPost);
       } else {
         errorHandle(400, '請填寫 Content 資料', next);
       }
@@ -50,7 +54,7 @@ const posts = {
   async deleteAllPosts(req, res, next) {
     const posts = await postModel.deleteMany({});
 
-    successHandle(res, posts);
+    successHandle(200, res, posts);
   },
   async deleteOnePost(req, res, next) {
     const id = req.params.id;
@@ -59,7 +63,7 @@ const posts = {
       const posts = await postModel.find();
 
       if (data !== null) {
-        successHandle(res, posts);
+        successHandle(200, res, posts);
       } else {
         errorHandle(400, '查無此貼文ID', next);
       }
@@ -84,7 +88,7 @@ const posts = {
 
           if (userId) {
             if (data !== null) {
-              successHandle(res, posts);
+              successHandle(200, res, posts);
             } else {
               errorHandle(400, '查無此貼文ID', next);
             }
