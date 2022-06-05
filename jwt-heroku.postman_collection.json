@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "e554e4b2-ae60-423b-becd-80f1a5a77233",
+		"name": "jwt-heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20339003"
+	},
+	"item": [
+		{
+			"name": "註冊",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test7@gmail.com\", \r\n    \"password\":\"1234rewq\", \r\n    \"confirmPassword\":\"1234rewq\", \r\n    \"name\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/users/sign_up",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test@gmail.com\", \r\n    \"password\":\"1234rewq12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/users/sign_in",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "重設密碼",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiOTE5NGUwNjU2ZWM5ZTViMThjNSIsImlhdCI6MTY1NDQzODE2OSwiZXhwIjoxNjU1MDQyOTY5fQ.z_245mZ_nXzUSNIOaqw1Q4_rwufvAGOpYUaB-y2IkxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\":\"1234rewq\", \n    \"confirmPassword\":\"1234rewq\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/users/updatePassword",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得使用者資料",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiOTE5NGUwNjU2ZWM5ZTViMThjNSIsImlhdCI6MTY1NDQzODE2OSwiZXhwIjoxNjU1MDQyOTY5fQ.z_245mZ_nXzUSNIOaqw1Q4_rwufvAGOpYUaB-y2IkxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\":\"627b6446854040cced862323\",\n    \"content\":\"測試資料100\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新使用者資料",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWNiOTE5NGUwNjU2ZWM5ZTViMThjNSIsImlhdCI6MTY1NDQzODE2OSwiZXhwIjoxNjU1MDQyOTY5fQ.z_245mZ_nXzUSNIOaqw1Q4_rwufvAGOpYUaB-y2IkxQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test6@gmail.com\", \r\n    \"name\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "張貼個人動態",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWEzNTExNWYyN2UzNGQ3NDk5YjgzMiIsImlhdCI6MTY1NDQzMzQ3NywiZXhwIjoxNjU1MDM4Mjc3fQ.ZGznBi7lDkVR1E-Hp-KppAVeFbF06MZka0-GCgRtqvo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"hello\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "觀看所有動態",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOWEzNTExNWYyN2UzNGQ3NDk5YjgzMiIsImlhdCI6MTY1NDQzMzQ3NywiZXhwIjoxNjU1MDM4Mjc3fQ.ZGznBi7lDkVR1E-Hp-KppAVeFbF06MZka0-GCgRtqvo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ancient-sierra-22334.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"ancient-sierra-22334",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
